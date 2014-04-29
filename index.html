@@ -34,50 +34,61 @@
     <div class="container">
 
       <div id='score'>
-        <table class='table' style='padding:30px;'>
-          <thead>
-            <tr>
-              <th><h3><center>Payment</center></h3></th>
-              <th><h3><center>Attempts</center></h3></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><h3><center>$0.00</center></h3></td>
-              <td><h3><center>0</center></h3></td>
-            </tr>
-          </tbody>
-        </table>
+
+        <div class='row'>
+          <div class='col-md-2'></div>
+          <div class='col-md-3'>
+            <h3><b>Payment</b></h3>
+            <h3>
+              $<span id='payment-text'>0.00</span>
+              <span id='plus-text' style='color:green;'></span>
+              <span id='minus-text' style='color:red;'></span>
+            </h3> 
+          </div>
+          <div class='col-md-2'></div>
+          <div class='col-md-3'>
+            <h3><b>Attempts</b></h3>
+            <h3 id='attempt-text'>0</h3>
+          </div>
+          <div class='col-md-2'></div>
+        </div>
+
       </div>
 
       <div id='piecharts'>
         <h2>What percent of the pie chart is green?</h2>
         <div class='row'>
           <div class='col-md-1'></div>
-          <div class='col-md-2'>
+          <div class='col-md-2' id='piechartdiv0'>
             <div id="piechart0" class='piechart'></div>
             <input type='text' class='form-control' id='guess0' placeholder='%'>
+            <button class='btn' id='guessbutton0' onclick='checkGuess(0)'>Guess</button>
           </div>
-          <div class='col-md-2'>
+          <div class='col-md-2' id='piechartdiv1'>
             <div id="piechart1" class='piechart'></div>
-            <input type='text' class='form-control' id='guess1' placeholder='%'>
+            <input type='text' class='form-control' id='guess1' placeholder='%' disabled>
+            <button class='btn' id='guessbutton1' onclick='checkGuess(1)' disabled>Guess</button>
           </div>
-          <div class='col-md-2'>
+          <div class='col-md-2' id='piechartdiv2'>
             <div id="piechart2" class='piechart'></div>
-            <input type='text' class='form-control' id='guess2' placeholder='%'>
+            <input type='text' class='form-control' id='guess2' placeholder='%' disabled>
+            <button class='btn' id='guessbutton2' onclick='checkGuess(2)' disabled>Guess</button>
           </div>
-          <div class='col-md-2'>
+          <div class='col-md-2' id='piechartdiv3'>
             <div id="piechart3" class='piechart'></div>
-            <input type='text' class='form-control' id='guess3' placeholder='%'>
+            <input type='text' class='form-control' id='guess3' placeholder='%' disabled>
+            <button class='btn' id='guessbutton3' onclick='checkGuess(3)' disabled>Guess</button>
           </div>
-          <div class='col-md-2'>
+          <div class='col-md-2' id='piechartdiv4'>
             <div id="piechart4" class='piechart'></div>
-            <input type='text' class='form-control' id='guess4' placeholder='%'>
+            <input type='text' class='form-control' id='guess4' placeholder='%' disabled>
+            <button class='btn' id='guessbutton4' onclick='checkGuess(4)' disabled>Guess</button>
           </div>
           <div class='col-md-1'></div>
         </div>
         <div style='padding: 30px'>
-          <button class='btn'>Guess!</button>
+          <button class='btn' onclick='tryAnotherFive()' id='try-button' style='display:none;' >Try another 5</button>
+          <button class='btn' >End game</button>
         </div>
       </div>
 

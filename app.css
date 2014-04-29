@@ -2,10 +2,12 @@ body {
   padding-top: 50px;
   padding-bottom: 100px;
   text-decoration: none;
+
 }
 
 h3, h2 {
 	font-weight: 300;
+	text-align: center;
 }
 
 #piecharts {
@@ -14,8 +16,8 @@ h3, h2 {
 
 .piechart {
 	text-align: center;
-	height: 150;
-	width: 150;
+	height: 200;
+	width: 165;
 }
 
 
@@ -23,3 +25,10 @@ h3, h2 {
   padding: 40px 15px;
   text-align: center;
 }
+
+.btn {
+	margin: 5px;
+	display: inline-block;
+	font-weight: 300;
+}
+

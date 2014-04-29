@@ -1,7 +1,7 @@
 // variables
 NUM_COLORS = 3;
 MAX_SUM = 10;
-GREEN_PERCENT = 0;
+GREEN_PERCENT = [];
 GUESS_LEEWAY = 5;
 PAYMENT_SCHEME = 'increasing';
 
@@ -16,7 +16,7 @@ google.setOnLoadCallback(drawChart);
 function drawChart() {
 
   for (var i = 0; i < 5; i++) {
-    var data = google.visualization.arrayToDataTable(randomDist(MAX_SUM, NUM_COLORS));
+    var data = google.visualization.arrayToDataTable(randomDist(MAX_SUM, NUM_COLORS, i));
 
     var options = {
       enableInteractivity: false,
@@ -39,7 +39,7 @@ function drawChart() {
 }
 
 // put distribution in format of google charts
-function randomDist (max, thecount) {
+function randomDist (max, thecount, id) {
 
   var dist = generate(max, thecount);
   var random_dist = [['color', 'portion']];
@@ -47,7 +47,7 @@ function randomDist (max, thecount) {
   for (var i = 0; i < dist.length; i++) {
     random_dist.push([color_labels[i], dist[i]]);
     if (color_labels[i] == 'green') {
-      GREEN_PERCENT = dist[i] * 10;
+      GREEN_PERCENT[id] = dist[i] * 10;
     }
   }
 
@@ -82,22 +82,22 @@ function generate(t, n) {
 // page handling code
 
 // check if guess is correct!
-function checkGuess() {
+function checkGuess(id) {
 
   // adjust attempts text
   var loc = $('#attempt-text');
   loc.text(parseInt(loc.text(), 10) + 1);
 
   // adjust payment text
-  $('#change-text').text('');
+  $('#plus-text').text('');
+  $('#minus-text').text('');
 
   // check if this is within the correct bounds
-  var val = $('#guess-text').val();
-  $('#guess-text').val('');
-  console.log(val, GREEN_PERCENT + GUESS_LEEWAY, GREEN_PERCENT - GUESS_LEEWAY);
+  var val = $('#guess' + id).val();
+  console.log(val, GREEN_PERCENT[id] + GUESS_LEEWAY, GREEN_PERCENT[id] - GUESS_LEEWAY);
   var is_correct = false;
-  if (val <= GREEN_PERCENT + GUESS_LEEWAY &&
-      val >= GREEN_PERCENT - GUESS_LEEWAY) {
+  if (val <= GREEN_PERCENT[id] + GUESS_LEEWAY &&
+      val >= GREEN_PERCENT[id] - GUESS_LEEWAY) {
     is_correct = true;
   }
 
@@ -106,7 +106,22 @@ function checkGuess() {
   // adjust payment based outcome
   adjustPayment(is_correct, PAYMENT_SCHEME);
 
-  drawChart();
+  // disable the current pie chart and enable the next
+  var j = id.toString();
+  var k = (id + 1).toString();
+
+  console.log(j,k);
+
+  $('#guess' + j).prop('disabled', true);
+  $('#guessbutton' + j).prop('disabled', true);
+
+  $('#guess' + k).prop('disabled', false);
+  $('#guessbutton' + k).prop('disabled', false);
+
+  // drawChart();
+  if (id == 4) {
+    $('#try-button').show();
+  }
 
 }
 
@@ -120,7 +135,7 @@ function adjustPayment(is_correct, payment_scheme) {
 
     var n = attempts.length;
     var change_in = 0.1 * Math.pow(0.8, n);
-    $('#change-text').text('+' + change_in.toFixed(4));
+    $('#plus-text').text('+' + change_in.toFixed(4));
     loc.text((change_in + val).toFixed(4));
 
     // TODO: track change in payment 
@@ -134,4 +149,16 @@ function adjustPayment(is_correct, payment_scheme) {
 
   }
 
+}
+
+function tryAnotherFive() {
+  drawChart();
+
+  for (var i = 0; i < 5; i++) {
+    var j = i.toString();
+    $('#guess' + j).val('');
+  }
+
+  $('#guess0').prop('disabled', false);
+  $('#guessbutton0').prop('disabled', false);
 }
