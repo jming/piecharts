@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Pie Chart Game</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel='stylesheet' href='app.css'>
+
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <div id='score'>
+        <table class='table' style='padding:30px;'>
+          <thead>
+            <tr>
+              <th><h3><center>Payment</center></h3></th>
+              <th><h3><center>Attempts</center></h3></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><h3><center>$0.00</center></h3></td>
+              <td><h3><center>0</center></h3></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id='piecharts'>
+        <h2>What percent of the pie chart is green?</h2>
+        <div class='row'>
+          <div class='col-md-1'></div>
+          <div class='col-md-2'>
+            <div id="piechart0" class='piechart'></div>
+            <input type='text' class='form-control' id='guess0' placeholder='%'>
+          </div>
+          <div class='col-md-2'>
+            <div id="piechart1" class='piechart'></div>
+            <input type='text' class='form-control' id='guess1' placeholder='%'>
+          </div>
+          <div class='col-md-2'>
+            <div id="piechart2" class='piechart'></div>
+            <input type='text' class='form-control' id='guess2' placeholder='%'>
+          </div>
+          <div class='col-md-2'>
+            <div id="piechart3" class='piechart'></div>
+            <input type='text' class='form-control' id='guess3' placeholder='%'>
+          </div>
+          <div class='col-md-2'>
+            <div id="piechart4" class='piechart'></div>
+            <input type='text' class='form-control' id='guess4' placeholder='%'>
+          </div>
+          <div class='col-md-1'></div>
+        </div>
+        <div style='padding: 30px'>
+          <button class='btn'>Guess!</button>
+        </div>
+      </div>
+
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+  </body>
+</html>
