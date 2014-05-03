@@ -185,8 +185,8 @@ function getNumCorrect(end) {
 
   var n = 0;
 
-  for (var i = 0; i < lst.length; i++) {
-    if (lst[i]) {
+  for (var i = 0; i < end; i++) {
+    if (attempts[i]) {
       n++;
     }
   }
@@ -260,6 +260,29 @@ function tryAnotherFive() {
 function endGame() {
   // console.log('clicked');
   // var len = attempts.length % 5;
-  var n = getNumCorrect(attempts.length / 5 * 5);
+  var n = getNumCorrect(attempts.length);
   $('#end-payment').text('$' + getPaymentUpTo(n).toFixed(2));
+
+  var attempts_binary = attempts.map(function(x) {return +x; }).join('');
+  console.log(attempts_binary);
+
+  var hash = getHash(attempts_binary);
+  console.log('hash', hash);
+
+  $('#end-code').text(hash);
+
+  console.log('decrypt', getDecrypt(hash));
+}
+
+function getHash(attempts_binary) {
+  var rsa = new RSAKey();
+
+  var n = '9c7ddce42a2557200107200014b2badf';
+  var e = '10001';
+
+  rsa.setPublic(n, e);
+
+  var ciphertext = rsa.encrypt(attempts_binary);
+
+  return ciphertext;
 }
