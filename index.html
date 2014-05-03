@@ -31,6 +31,25 @@
 
   <body>
 
+    <div class='modal fade' id='beginGameModal' role='dialog'>
+      <div class='modal-dialog'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4>Welcome</h4>
+          </div>
+          <div class='modal-body'>
+            <p>Welcome to the pie chart game! </p>
+            <p>Your task is to guess how much of the pie chart is green. You will be presented with sets of five pie charts at a time.
+            <span id='payment-decreasing'>You will receive money for each set of five you complete. The amount you  receive decreases with each percentage you guess incorrectly.</span>
+            <span id='payment-increasing' style='display:none;'>You will receive money for each set of five you complete. The amount you receive increases with each percentage you guess correctly.</span></p>
+            <p>Good luck! And may the odds be ever in your favor.</p>
+            <center><button class='btn' data-dismiss='modal'>Begin game!</button></center>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="container">
 
       <div id='score'>
@@ -59,27 +78,27 @@
         <h2>What percent of the pie chart is green?</h2>
         <div class='row'>
           <div class='col-md-1'></div>
-          <div class='col-md-2' id='piechartdiv0'>
+          <div class='col-md-2' id='piechartdiv0' >
             <div id="piechart0" class='piechart'></div>
             <input type='text' class='form-control' id='guess0' placeholder='%'>
             <button class='btn' id='guessbutton0' onclick='checkGuess(0)'>Guess</button>
           </div>
-          <div class='col-md-2' id='piechartdiv1'>
+          <div class='col-md-2' id='piechartdiv1' style='display:none;'>
             <div id="piechart1" class='piechart'></div>
             <input type='text' class='form-control' id='guess1' placeholder='%' disabled>
             <button class='btn' id='guessbutton1' onclick='checkGuess(1)' disabled>Guess</button>
           </div>
-          <div class='col-md-2' id='piechartdiv2'>
+          <div class='col-md-2' id='piechartdiv2' style='display:none;'>
             <div id="piechart2" class='piechart'></div>
             <input type='text' class='form-control' id='guess2' placeholder='%' disabled>
             <button class='btn' id='guessbutton2' onclick='checkGuess(2)' disabled>Guess</button>
           </div>
-          <div class='col-md-2' id='piechartdiv3'>
+          <div class='col-md-2' id='piechartdiv3' style='display:none;'>
             <div id="piechart3" class='piechart'></div>
             <input type='text' class='form-control' id='guess3' placeholder='%' disabled>
             <button class='btn' id='guessbutton3' onclick='checkGuess(3)' disabled>Guess</button>
           </div>
-          <div class='col-md-2' id='piechartdiv4'>
+          <div class='col-md-2' id='piechartdiv4' style='display:none;'>
             <div id="piechart4" class='piechart'></div>
             <input type='text' class='form-control' id='guess4' placeholder='%' disabled>
             <button class='btn' id='guessbutton4' onclick='checkGuess(4)' disabled>Guess</button>
@@ -88,11 +107,44 @@
         </div>
         <div style='padding: 30px'>
           <button class='btn' onclick='tryAnotherFive()' id='try-button' style='display:none;' >Try another 5</button>
-          <button class='btn' >End game</button>
+          <button class='btn' id='end-game-button' onclick='endGame()' data-toggle='modal' data-target='#endGameModal'>End game</button>
         </div>
       </div>
 
     </div><!-- /.container -->
+
+    <div class='modal fade' id='endGameModal' tabindex='-1' role='dialog'>
+      <div class='modal-dialog'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4>End game</h4>
+          </div>
+          <div class='modal-body'>
+            <p>We're sorry to see you go! If you want to end the game now, you will receive the amount you would have earned for the last group of five that you completed.</p>
+            <h3 id='end-payment'>$0.00</h3>
+            <center><button class='btn' data-dismiss='modal' data-toggle='modal' data-target='#endGameCode'>Okay</button>
+            <button class='btn' data-dismiss='modal'>Continue playing</button></center>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class='modal fade' id='endGameCode' tabindex='-1' role='dialog'>
+      <div class='modal-dialog'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4>End game</h4>
+          </div>
+          <div class='modal-body'>
+            <p>Please enter the following code in Amazon Mechanical Turk to receive your bonus.</p>
+            <h3 id='#end-code'>CODE</h3>
+            <center><button class='btn' data-dismiss='modal'>Goodbye!</button></center>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
     <!-- Bootstrap core JavaScript
